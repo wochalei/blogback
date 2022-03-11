@@ -1,19 +1,12 @@
-# back
-
-## Project setup
-```
+下载node环境
 npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+npm run dev
 
-### Compiles and minifies for production
-```
-npm run build
-```
+成功后访问 http://localhost:8000/#/login
+账号 1 密码 2
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+
+

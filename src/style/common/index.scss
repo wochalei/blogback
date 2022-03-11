@@ -1,0 +1,123 @@
+
+@media screen and (max-width:1226px) {
+    /* html{
+        filter: invert(1) hue-rotate(180deg) grayscale(1);
+    } */
+    body.limit,.limit .menu,body .tip,body .card,body .page,body .major{
+        width: 100%;
+  
+    }
+    body .menu{
+        justify-content: space-around;
+    }
+    
+} 
+@media screen and (max-width:980px){
+    body .card{
+        
+     grid-template-columns: repeat(2,1fr);
+     grid-gap: 10px;
+    }
+
+    body .friend{
+        grid-template-columns: repeat(2,1fr);
+    } 
+}
+@media screen and (max-width:810px){
+   body .menu{
+       justify-content: center;
+       transition: all 1s;
+    .menu_nav{
+        position: absolute;
+        align-items: center;
+        width: 120px;
+        top: 0px;
+        left:-120px;
+        transform: translateX(-100%);
+        flex-direction: column;
+        height: 100vh !important;
+        /* padding:0 20px ; */
+        background-color: white;
+        color: #000;
+        transition: transform 0.7s;
+        li{
+            width: 100%;
+        }
+        
+    }
+    .menu_nav_aticve{
+        
+        transform: translateX(100%);
+        
+     }
+     .menu_flag{
+         position: absolute;
+         right: 50px;
+         top: 30px;
+         width: 25px;
+         height: 36px;
+         transform: translateY(-50%);
+         
+         cursor: pointer;
+     }
+    .menu_show{
+        position: absolute;
+       top: 50%;
+        width: 25px;
+        height: 4px;
+        background-color: white;
+
+    }
+    .menu_show::before,.menu_show::after{
+        content: "";
+        position: absolute;
+        width: inherit;
+        height: inherit;
+        background-color: inherit;
+        
+    }
+    .menu_show::after{
+        transform: translateY(200%);
+    }
+    .menu_show::before{
+        transform: translateY(-200%);
+    }
+   } 
+
+}
+@media screen and (max-width:780px){
+
+    body .card{
+        
+        grid-template-columns: repeat(1,100%);
+        grid-gap: 10px;
+        justify-items: center;
+        .card_item{
+            width: 450px;
+        }
+    
+    }
+   body .show_content .content_anchor{
+        display: none;
+    }
+   
+}
+@media screen and (max-width:650px){
+
+     body .friend{
+        grid-template-columns: repeat(1,1fr);
+    } 
+}
+@media screen and (max-width:500px){
+    body .card{
+        
+        grid-template-columns: repeat(1,100%);
+        grid-gap: 10px;
+        justify-items: center;
+        .card_item{
+            width: 100%;
+        }
+    
+    }
+}
+
