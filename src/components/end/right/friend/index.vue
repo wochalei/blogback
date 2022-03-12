@@ -27,7 +27,7 @@
   </div>
 </template>
 <script>
-import { addLink, getLink, updateLink } from "../../../../http/link";
+import{link} from '../../../../http/api'
 import { reactive } from "vue";
 export default {
   data() {
@@ -44,7 +44,7 @@ export default {
     },
     add() {
       if (!this.flag) {
-        addLink(this.obj)
+        link.addLink(this.obj)
           .then((res) => {
             alert("添加成功");
             this.init();
@@ -54,7 +54,7 @@ export default {
             alert("添加失败");
           });
       } else {
-        updateLink(this.obj)
+        link.updateLink(this.obj)
           .then((res) => {
             alert("修改成功");
             this.$router.push({path:'/end/friend/change'})
@@ -66,7 +66,7 @@ export default {
       }
     },
     get(id) {
-      getLink(id).then((res) => {
+      link.getLink(id).then((res) => {
         this.obj = res.data.data[0];
       });
     },

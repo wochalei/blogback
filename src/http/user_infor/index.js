@@ -1,29 +1,29 @@
-import axios from 'axios';
+import request from "../index";
+const path = '/api/useriformation';
 function getUser(obj) {
    obj=obj? obj:{};
-   
-    return axios({
+    return request({
         method: 'post',
-        url: '/api/useriformation/get',
+        url: path + '/get',
         data: {choose:obj.choose}
     })
 }
 
 function updateUser(obj) {
-    return axios({
+    return request({
         method: 'post',
-        url: "/api/useriformation/update",
+        url: path + "/update",
         data: obj
     })
 }
 function updateIntroduce(obj) {
-    return axios({
+    return request({
         method: 'post',
-        url: "/api/useriformation/introduce",
+        url: path + "/introduce",
         data: obj
     })
 }
-export {
+export default{
 
     getUser,
     updateIntroduce,

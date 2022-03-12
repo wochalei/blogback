@@ -31,7 +31,7 @@
 import page from "../../../common/page";
 import list from "../../../common/form";
 import typeadd from "../../../common/typeadd";
-import { addType, getType,deletedType,changeType } from "../../../../http/type";
+import{type} from '../../../../http/api'
 export default {
   data() {
     return {
@@ -73,7 +73,7 @@ export default {
     },
     save(value){
     
-       changeType(this.type,value)
+       type.changeType(this.type,value)
        .then(res=>{
          
          this.close();
@@ -84,7 +84,7 @@ export default {
        })
     },
     add(value) {
-      addType(value)
+      type.addType(value)
         .then((res) => {
           if (res.data.error != 1) alert("成功添加");
           else alert("已有该类型");
@@ -98,14 +98,14 @@ export default {
         });
     },
     httpType() {
-      getType().then((res) => {
+      type.getType().then((res) => {
         this.data = res.data.data;
         this.allCount=res.data.data.length;
       });
     },
     deleted(e){
       const type =e.target.parentElement.parentElement.dataset.type;
-      deletedType(type)
+      type.deletedType(type)
       .then(res=>{
          
          this.httpType();

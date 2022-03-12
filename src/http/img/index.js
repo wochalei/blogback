@@ -1,10 +1,14 @@
- import {http} from '../../config/httpConfig'
- import axios from 'axios';
+import request from "../index";
+const path = '/api/img';
 
  function addImg(data){
-   return  axios.post('/api/img',data);
+   return  request({
+      method:'post',
+      url: path ,
+      data
+   })
  } 
  
- export {
+ export default{
     addImg
 };

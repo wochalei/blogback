@@ -14,7 +14,7 @@
 import tip from "../../indextip";
 import card from "../card/index.vue";
 import page from "../../../common/page";
-import { searchAll,searchPublic } from "../../../../http/blog";
+import {blog} from '../../../../http/api'
 import {eventBus} from '../../../../utils.js/bus'
 import {timestampToTime} from '../../../../utils.js/tools'
 
@@ -25,7 +25,8 @@ export default {
       pageSize: 6,
       pageCount: 10,
       allCount: 0,
-      say:''
+      say:'',
+      text:''
     };
   },
   components: {
@@ -49,14 +50,14 @@ export default {
        })
     }
     ,
-    getPage(obj, text) {
+    getPage(obj) {
       if(!obj.page) this.page=1;
       else this.page = obj.page;
-      searchAll({ title: text, page: obj.page, pageSize: obj.pageSize })
+      blog.searchAll({ title: this.text, page: obj.page, pageSize: obj.pageSize })
         .then((res) => {
           
           this.data = this.formateTime(res.data.data);
-          this.allCount = res.data.allCount;
+          this.allCount = res.data.allCount; 
         })
         .catch((err) => {
           console.log(err);
@@ -66,13 +67,13 @@ export default {
   mounted() {
     this.getPage({ page: 1, pageSize: this.pageSize }, "");
     eventBus.$on('title',(value)=>{
-      
-      this.getPage({},value);
+      this.text=value;
+      this.getPage({page: 1, pageSize: this.pageSize});
       
     })
     eventBus.$on('renew',()=>{
-      
-      this.getPage({ page: 1, pageSize: this.pageSize }, "");
+      this.text='';
+      this.getPage({ page: 1, pageSize: this.pageSize });
       
     })
      

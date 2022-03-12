@@ -7,7 +7,7 @@
 </template>
 <script>
 import tree from './tree'
-import {getAll} from '../../../../http/blog'
+import {blog} from "../../../../http/api"
 import {dataToTree} from '../../../../utils.js/tools'
 export default {
     data() {
@@ -21,7 +21,7 @@ export default {
     },
     mounted() {
         
-        getAll()
+        blog.getAll()
         .then(res=>{
 
           this.treeData= dataToTree(res.data.data);

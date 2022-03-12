@@ -5,7 +5,8 @@
     </div>
 </template>
 <script>
-import{getUser} from '../../../../http/user_infor'
+import {user_infor} from '../../../../http/api'
+
 import user from './user'
 export default {
   data() {
@@ -16,7 +17,7 @@ export default {
     };
   },
   mounted() {
-    getUser()
+    user_infor.getUser()
     .then(res=>{
       let data =res.data.data[0];
       this.text= data.introduce;

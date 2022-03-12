@@ -18,8 +18,7 @@ import fn from "./fn";
 import card from "../card/index.vue";
 import page from "../../../common/page";
 import datamessage from '../../../common/message/datamessage'
-import {searchType} from '../../../../http/blog'
-import {getType} from '../../../../http/type'
+import {blog,type} from '../../../../http/api'
 export default {
   data() {
     return {
@@ -45,7 +44,7 @@ export default {
   methods: {
       getPage(obj, text) {
       this.page = obj.page;
-      searchType({ title: text, page: obj.page, pageSize: obj.pageSize ,type:obj.type})
+      blog.searchType({ title: text, page: obj.page, pageSize: obj.pageSize ,type:obj.type})
         .then((res) => {
           
           this.data = res.data.data;
@@ -56,7 +55,7 @@ export default {
         });
     },
     getHtmlType(){
-        getType()
+        type.getType()
         .then(res=>{
             
           this.typeList=res.data.data;

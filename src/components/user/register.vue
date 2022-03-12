@@ -17,7 +17,7 @@
     </div>
 </template>
 <script>
-import {addUser} from '../../http/user'
+import {user} from '../../http/api'
 export default {
     name:'register',
     data() {
@@ -29,7 +29,7 @@ export default {
     methods: {
       add(){
           let data={name:this.name,password:this.password};
-          addUser(data)
+          user.addUser(data)
           .then(res=>{
             if(res.data.error!=1){
               alert(res.data.message);

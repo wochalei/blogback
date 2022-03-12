@@ -27,7 +27,7 @@
       <v-md-preview :text="data.content"></v-md-preview>
     </div> -->
      <blogshow  v-if="data.content" :text="data.content" />
-    <comment @getContent="getContent" />
+    <user-comment @getContent="getContent" />
     <div class="show_item">
       
       <template v-if="commentList">
@@ -39,11 +39,9 @@
   </div>
 </template>
 <script>
-
-import { searchAll,searchPublic } from "../../../../http/blog";
-import comment from "../../../common/comment";
+import {blog,comment} from '../../../../http/api'
+import userComment from "../../../common/comment";
 import commentitem from "../../../common/comment/item";
-import { add, get } from "../../../../http/comment";
 import {eventBus} from '../../../../utils.js/bus.js'
 import{ timestampToTime} from '../../../../utils.js/tools'
 import blogshow from './blogshow'
@@ -65,7 +63,7 @@ export default {
     };
   },
   components: {
-    comment,
+    userComment,
     commentitem,
     blogshow,
     goTop
@@ -78,7 +76,7 @@ export default {
       obj.time = Date.now();
       obj.blog_id=this.blog_id;
       obj.pid = 0;
-      add(obj)
+      comment.add(obj)
         .then((res) => {
           this.content = "";
           if (res.data.error != 1) {
@@ -93,7 +91,7 @@ export default {
         });
     },
     getList() {
-      get({blog_id:this.blog_id}).then((res) => {
+      comment.get({blog_id:this.blog_id}).then((res) => {
         this.commentList= this.treeFormat(res.data.data);
       })
       .catch(er=>{console.log(er);})
@@ -129,7 +127,7 @@ export default {
   },
   mounted() {
     this.init();
-    searchPublic({ blog_id: this.blog_id }).then((res) => {
+    blog.searchPublic({ blog_id: this.blog_id }).then((res) => {
       this.data =this.formateTime(res.data.data[0]);
       
     });

@@ -27,6 +27,7 @@
 <script>
 import page from "../../../common/page";
 import list from "../../../common/form";
+import {link} from "../../../../http/api"
 import { getLink ,deletedLink} from "../../../../http/link";
 export default {
   data() {
@@ -93,7 +94,7 @@ export default {
         });
     },
     httpLink() {
-      getLink().then((res) => {
+      link.getLink().then((res) => {
         this.data = res.data.data;
         this.allCount = res.data.data.length;
       });
@@ -101,7 +102,7 @@ export default {
     deleted(e) {
       const id = e.target.parentElement.parentElement.dataset.id;
 
-      deletedLink(id)
+      link.deletedLink(id)
         .then((res) => {
           this.httpLink();
         alert('删除成功');

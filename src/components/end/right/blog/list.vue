@@ -1,6 +1,6 @@
 <template>
   <div class="blog">
-    <search :tip="tip" @value="getPage"></search>
+    <search :tip="tip" @value="search"></search>
     <list :title="title">
       <template v-slot:body>
         <tr v-for="(item, index) in datalist" :key="index" :data-blog_id='item.blog_id'>
@@ -30,7 +30,7 @@
 import page from "../../../common/page";
 import list from "../../../common/form";
 import search from "../../../common/search";
-import { searchAll ,deletedBlog} from "../../../../http/blog";
+import {blog} from '../../../../http/api'
 import{timestampToTime} from '../../../../utils.js/tools'
 export default {
   data() {
@@ -68,7 +68,7 @@ export default {
     deleted(e){
        const blog_id =e.target.parentElement.parentElement.dataset.blog_id;
        
-       deletedBlog(blog_id)
+       blog.deletedBlog(blog_id)
        .then(res=>{
          
           this.getPage({page:1,pageSize:this.pageSize},"");
@@ -87,11 +87,15 @@ export default {
         return item;
       })
     },
+    search(text){
+      this.text =text;
+      this.getPage({ title: this.text, page: 1, pageSize: this.pageSize })
+    },
     //服务器分别请求分页
-    getPage(obj,text){
+    getPage(obj){
       if(!obj.page) this.page=1;
       else this.page=obj.page;
-       searchAll({title:text,page:obj.page,pageSize:obj.pageSize})
+       blog.searchAll({title:this.text,page:obj.page,pageSize:obj.pageSize})
         .then((res) => {
           
           this.data=res.data.data;
@@ -104,7 +108,7 @@ export default {
     }
   },
   mounted() {
-    this.getPage({page:1,pageSize:this.pageSize},"");
+    this.getPage({page:1,pageSize:this.pageSize});
   },
 };
 </script>

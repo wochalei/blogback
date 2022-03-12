@@ -1,22 +1,23 @@
-import axios from 'axios'
+import request from "../index";
+const path = '/api/system';
 function getSystem(){
-    return axios({
+    return request({
         method:'post',
-        url: '/api/system/get',
+        url: path + '/get',
         data: {
             
         }
     })
 }
 function updateSystem(obj){
-    return axios({
+    return request({
         method:'post',
-        url: '/api/system/update',
+        url: path + '/update',
         data: obj
     })
 }
 
-export{
+export default{
     updateSystem,
     getSystem,
    

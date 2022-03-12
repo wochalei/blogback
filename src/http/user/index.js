@@ -1,8 +1,9 @@
-import axios from 'axios'
+import request from "../index";
+const path = '/api/user';
 function addUser(data){
-  return axios({
+  return request({
        method:'post',
-       url: '/api/user/add',
+       url: path + '/add',
        data: {
            name:data.name,
            password:data.password
@@ -11,9 +12,9 @@ function addUser(data){
 }
 
 function loginUser(data){
-    return axios({
+    return request({
         method:'post',
-        url: '/api/user/login',
+        url: path + '/login',
         data: {
             name:data.name,
             password:data.password
@@ -21,22 +22,22 @@ function loginUser(data){
     })
 }
 function checkUserId(){
-    return axios({
+    return request({
         method:'post',
-        url: '/api/user/check',
+        url: path + '/check',
         data: {}
     })
 }
 function getUser(){
-    return axios({
+    return request({
         method:'post',
-        url: '/api/user/information',
+        url: path + '/information',
         data: {
             
         }
     })
 }
-export{
+export default{
     addUser,
     loginUser,
     checkUserId,

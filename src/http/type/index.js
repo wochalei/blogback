@@ -1,9 +1,10 @@
-import axios from 'axios';
+import request from "../index";
+const path = '/api/blogtype';
 function addType(value){
     
-   return axios({
+   return request({
         method:'post',
-        url: '/api/blogtype/add',
+        url: path + '/add',
         data: {
             
             type:value
@@ -11,9 +12,9 @@ function addType(value){
     })
 }
 function getType(id){
-   return axios({
+   return request({
        method:'post',
-       url: '/api/blogtype/searchusertype',
+       url:  path + '/searchusertype',
        data: {
         
        }
@@ -21,9 +22,9 @@ function getType(id){
 }
 function changeType(type,value){
     
-  return axios({
+  return request({
       method:'post',
-      url: "/api/blogtype/changeusertype",
+      url:  path + "/changeusertype",
       data: {
           type:type,
           value:value
@@ -31,15 +32,15 @@ function changeType(type,value){
   })
 }
 function deletedType(value){
-    return axios({
+    return request({
         method:'post',
-        url: "/api/blogtype/deleteusertype",
+        url:  path + "/deleteusertype",
         data: {
             type:value
         }
     })
 }
-export{
+export default{
     addType,
     getType,
     changeType,

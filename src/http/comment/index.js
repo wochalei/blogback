@@ -1,37 +1,38 @@
-import axios from 'axios';
+import request from "../index";
+const path = '/api/comment';
 function add(data){
-    return axios({
+    return request({
         method:'post',
-        url: '/api/comment/add',
+        url: path + '/add',
         data: data
     })     
 }
 function get(obj){
-    return axios({
+    return request({
         method:'post',
-        url: '/api/comment/get',
+        url:  path + '/get',
         data: {
             blog_id:obj.blog_id,
         }
     })  
 }
 function deleted(id){
-    return axios({
+    return request({
         method:'post',
-        url: '/api/comment/deleted',
+        url:  path + '/deleted',
         data: {
             id
         }
     })  
 }
 function reply(data){
-    return axios({
+    return request({
         method:'post',
-        url: '/api/comment/reply',
+        url:  path + '/reply',
         data: data
     })  
 }
-export{
+export default{
     add,
     get,
     deleted,

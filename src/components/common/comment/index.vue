@@ -7,62 +7,58 @@
     <div class="comment_content">
       <div class="comment_user">
          <div>
-        <span>昵称:</span> <span class="t_ip">{{name_tip}}</span>
-        <input type="text" name="comment_user_name" v-model="name" />
+        <span>昵称:</span> <span class="t_ip">{{userName.valueFlag}}</span>
+        <input type="text" name="comment_user_name" v-model="userName.value" />
         
         </div> 
         <div>
-        <span>邮箱:</span> <span class="t_ip">{{email_tip}}</span>
-        <input type="email" name="comment_user_email" v-model="email" />
+        <span>邮箱:</span> <span class="t_ip">{{email.valueFlag}}</span>
+        <input type="email" name="comment_user_email" v-model="email.value" />
 
         </div>
       </div>
-      <textarea name="" cols="30" rows="10" v-model="value"></textarea>
+      <span class="t_ip">{{text.valueFlag}}</span>
+      <textarea name="" cols="30" rows="10" v-model="text.value"></textarea>
       <div class="comment_btn"><button @click="emit">提交</button></div>
     </div>
   </div>
 </template>
 <script>
+import { check } from '../../../utils.js/defend';
+import strategies from '../../../utils.js/formCheck';
+import {reactive} from 'vue'
 export default {
   name: "commenta",
   data() {
     return {
-        name_tip:'',
-        email_tip:'',
-        name:'',
-        email:'',
-        value:''
+        userName: reactive({value:"",valueFlag:""}),
+        email:reactive({value:"",valueFlag:""}),
+        text:reactive({value:"",valueFlag:""})
     };
   },
   methods: {
     init(){
-       this.name='',this.name_tip='',this.email_tip='',this.email='',
-       this.value='';
+        this.userName= reactive({value:"",valueFlag:""});
+        this.email=reactive({value:"",valueFlag:""});
+        this.text=reactive({value:"",valueFlag:""});
     },
     emit() {
-      
-     let flag= this.checkData(this.name,this.email);
+     let flag= this.checkFrom.check();
       if(flag){
-        this.$emit('getContent',{userName:this.name,email:this.email,content:this.value}); 
+        this.$emit('getContent',{userName:this.userName.value,email:this.email.value,content:this.text.value}); 
         this.init();
       }
-    },
-    checkData(name,email) {
-      var atpos = email.indexOf("@");
-      var dotpos = email.lastIndexOf(".");
-      let count =0;
-      if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email.length) {
-        this.email_tip='无效邮箱';
-        count++;
-      }
-      if(name===''){
-          this.name_tip='名字不能为空';
-          count++;
-      }
-      if(count===0) return true;
-      else return false;
-    },
+    }
+    
   },
+  mounted() {
+      this.checkFrom = new strategies();
+
+      this.checkFrom.add(this.userName,'isEmpty')
+      .add(this.email,"isEmpty")
+      .add(this.email,"isEmail")
+      .add(this.text,"isEmpty");
+  }
 };
 </script>
 <style lang="scss">
@@ -83,15 +79,16 @@ export default {
   }
   .comment_user {
     padding-top: 10px;
-    .t_ip{
-        text-align: right;
-        color: red;
-        font-size: 16px;
-    }
+    
     span {
       white-space: nowrap;
     }
   }
+  .t_ip{
+        text-align: right;
+        color: red;
+        font-size: 16px;
+    }
   .comment_content {
     width: 100%;
     font-size: 20px;

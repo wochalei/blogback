@@ -31,7 +31,7 @@
   </div>
 </template>
 <script>
-import { getSystem, updateSystem } from "../../../../http/system";
+import{system} from '../../../../http/api'
 export default {
   data() {
     return {
@@ -45,7 +45,7 @@ export default {
     save() {
       let table = this.$refs.f_sys,
         formdata = new FormData(table);
-      updateSystem(formdata)
+      system.updateSystem(formdata)
         .then((res) => {
             alert('保存成功');
           
@@ -56,7 +56,7 @@ export default {
     },
   },
   mounted() {
-    getSystem()
+    system.getSystem()
       .then((res) => {
         
         this.one = res.data.data[0].img_one;

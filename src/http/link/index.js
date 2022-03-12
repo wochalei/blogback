@@ -1,37 +1,38 @@
-import axios from 'axios';
+import request from "../index";
+const path = '/api/friend';
 function addLink(obj) {
 
-    return axios({
+    return request({
         method: 'post',
-        url: '/api/friend/add',
+        url: path + '/add',
         data: obj
     })
 }
 function getLink(id) {
-    return axios({
+    return request({
         method: 'post',
-        url: '/api/friend/get',
+        url: path + '/get',
         data: {id:id}
     })
 }
 
 function deletedLink(value) {
-    return axios({
+    return request({
         method: 'post',
-        url: "/api/friend/deleted",
+        url: path + "/deleted",
         data: {
             id:value
         }
     })
 }
 function updateLink(obj) {
-    return axios({
+    return request({
         method: 'post',
-        url: "/api/friend/update",
+        url: path + "/update",
         data: obj
     })
 }
-export {
+export default {
     addLink,
     getLink,
     deletedLink,

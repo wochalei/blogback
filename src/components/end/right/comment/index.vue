@@ -45,8 +45,7 @@ import page from "../../../common/page";
 import list from "../../../common/form";
 import search from "../../../common/search";
 import tmp from "../../../../components/common/tmp";
-import { get, deleted, reply } from "../../../../http/comment/";
-
+import {comment} from '../../../../http/api'
 import{timestampToTime} from '../../../../utils.js/tools'
 export default {
   data() {
@@ -70,7 +69,7 @@ export default {
   },
   methods: {
     getList(id=undefined) {
-      get({blog_id:id}).then((res) => {
+      comment.get({blog_id:id}).then((res) => {
         let data =this.sort(res.data.data);
         this.data =this.formateTime(data);
         this.allCount = data.length;
@@ -97,7 +96,7 @@ export default {
     },
     deletedComment(e) {
       let id = e.target.dataset.id;
-      deleted(id)
+      comment.deleted(id)
         .then((res) => {
           if (res.data.error != 1) {
             alert("删除成功");
@@ -135,7 +134,7 @@ export default {
       this.comment.title = content.title;
       this.comment.content = content.html;
       this.comment.flag ='true'
-      reply(this.comment).then((res) => {
+      comment.reply(this.comment).then((res) => {
         alert('回复成功');
          
         this.close();
@@ -143,8 +142,8 @@ export default {
         alert('回复失败');
       });
     },
-    search(obj,value){
-    
+    search(value){
+       console.log(value);
       this.getList(value);
     }
   },

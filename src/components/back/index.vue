@@ -7,12 +7,12 @@
   </div>
 </template>
 <script>
+import {user_infor,system} from '../../http/api'
 import tou from "./header";
 import content from "./content";
 import navmenu from "./header/menu";
 import foo from "./footer";
-import { getUser } from "../../http/user_infor";
-import { getSystem, updateSystem } from "../../http/system";
+
 import {socket} from '../../main'
 export default {
   name: "back",
@@ -37,7 +37,7 @@ export default {
     },
   },
   mounted() {
-    getUser()
+    user_infor.getUser()
       .then((res) => {
         this.u_data = res.data.data[0];
         
@@ -45,10 +45,10 @@ export default {
       .catch((e) => {
         console.log(e);
       });
-    getSystem()
+    system.getSystem()
       .then((res) => {
         this.sys_data = res.data.data[0];
-        updateSystem({ count: this.sys_data.count });
+        system.updateSystem({ count: this.sys_data.count });
       })
       .catch((e) => {
         console.log(e);

@@ -19,7 +19,7 @@ export default {
     methods: {
      search(){
 
-       this.$emit("value",{},this.text);
+       this.$emit("value",this.text);
      }
     },
 };

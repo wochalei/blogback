@@ -47,11 +47,9 @@
 </template>
 
 <script>
-import { addImg } from "../../../../http/img/index";
-import { addBlog ,updateBlog } from "../../../../http/blog/index";
+import {blog,type,img} from '../../../../http/api'
 import { matchImg } from "../../../../utils.js/tools";
-import { searchAll } from "../../../../http/blog";
-import{getType} from '../../../../http/type'
+
 export default {
   data() {
     return {
@@ -80,7 +78,7 @@ export default {
       let tmp = matchImg(data.content, data.img);
       data.img = tmp;
       if(!this.flag){
-         updateBlog(data)
+         blog.updateBlog(data)
           .then((res) => {
           if(res.data.error===1)  alert("无权限");
           else alert("成功"); 
@@ -90,7 +88,7 @@ export default {
           alert("修改失败");
         });
       }else{
-       addBlog(data)
+       blog.addBlog(data)
         .then((res) => {
           if(res.data.error===1)  alert("无权限");
           else alert("成功");   
@@ -106,7 +104,7 @@ export default {
     handleUploadImage(event, insertImage, files) {
       let form = new FormData();
       form.append("img", files[0]);
-      addImg(form).then((res) => {
+      img.addImg(form).then((res) => {
         this.img.push(res.data.url);
 
         insertImage({
@@ -135,7 +133,7 @@ export default {
       this.title = obj.title;
     },
     getTypeList(){
-      getType()
+      type.getType()
       .then(res=>{
         this.typeList=res.data.data;
         this.type=this.typeList[0].type;
@@ -145,7 +143,7 @@ export default {
   mounted() {
     if (this.$route.query.blog_id) {
       this.blog_id=this.$route.query.blog_id;
-      searchAll({ blog_id: this.blog_id })
+      blog.searchAll({ blog_id: this.blog_id })
       .then((res) => {
         this.copy(res.data.data[0]);
         this.flag=false;
@@ -181,7 +179,6 @@ export default {
   }
 }
 .item {
-  font-size: 15px;
 
   input,
   select {

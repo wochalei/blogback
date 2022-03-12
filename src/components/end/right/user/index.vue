@@ -43,7 +43,7 @@
   </div>
 </template>
 <script>
-import {updateUser,getUser} from '../../../../http/user_infor'
+import {user_infor} from '../../../../http/api'
 export default {
   data() {
     return {
@@ -63,7 +63,7 @@ export default {
       data.append('say',JSON.stringify(this.say) );
       console.log(JSON.stringify(this.say) );
       data.append('user_id',localStorage.getItem('user_id'));
-      updateUser(data)
+      user_infor.updateUser(data)
       .then(data=>{
         
         alert('修改成功')
@@ -81,7 +81,7 @@ export default {
     }
   },
    mounted() {
-      getUser()
+      user_infor.getUser()
       .then(res=>{
         let data =res.data.data[0];
         this.init(data);

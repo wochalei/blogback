@@ -8,7 +8,7 @@
     </div>
 </template>
 <script>
-import {getUser} from '../../../http/user'
+import {user} from '../../../http/api'
 export default {
     name:"left_user",
     data() {
@@ -17,7 +17,7 @@ export default {
         }
     },
     mounted() {
-        getUser()
+        user.getUser()
         .then(res=>{this.information=res.data[0];
          
         })

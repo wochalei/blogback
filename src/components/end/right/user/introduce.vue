@@ -8,7 +8,7 @@
   </div>
 </template>
 <script>
-import {updateIntroduce,getUser} from '../../../../http/user_infor'
+import {user_infor} from '../../../../http/api'
 export default {
   data() {
     return {
@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     save(text){
-      updateIntroduce({introduce:text})
+      user_infor.updateIntroduce({introduce:text})
       .then(res=>{
            alert("保存成功");
       })
@@ -27,7 +27,7 @@ export default {
     }
   },
   mounted() {
-    getUser({choose:true})
+    user_infor.getUser({choose:true})
     .then(res=>{
       this.text= res.data.data[0].introduce;
     })

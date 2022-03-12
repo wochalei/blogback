@@ -19,7 +19,7 @@
     
 </template>
 <script>
-import {loginUser} from '../../http/user'
+import {user} from '../../http/api'
 export default {
     name:'login',
     data() {
@@ -31,7 +31,7 @@ export default {
     methods: {
         login(){
             let data={name:this.name,password:this.password};
-            loginUser(data)
+            user.loginUser(data)
             .then(res=>{
                 if(res.data.error!=1){
                    

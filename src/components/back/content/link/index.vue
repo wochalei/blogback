@@ -6,7 +6,7 @@
 </template>
 <script>
 import friend from './friend'
-import {getLink}from '../../../../http/link'
+import {link} from '../../../../http/api'
 export default {
     data() {
         return {
@@ -15,7 +15,7 @@ export default {
     },
      mounted() {
         window.scrollTo(0,window.innerHeight);
-        getLink().then(res=>{this.data=res.data.data})
+        link.getLink().then(res=>{this.data=res.data.data})
     },
     components:{
         friend
