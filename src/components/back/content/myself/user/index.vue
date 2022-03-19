@@ -13,8 +13,7 @@ export default {
 <style lang="scss">
     .myself_user{
         background-color: white;
-        margin-top: -35px;
-        padding-top: 70px;
+        padding: 20px 0;
         .my_img{
             width: 100px;
             height: 100px;
@@ -25,6 +24,7 @@ export default {
         }
         h2{
             text-align: center;
+            color: #636e72;
         }
     }
 </style>

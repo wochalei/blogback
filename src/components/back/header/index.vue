@@ -1,7 +1,7 @@
 <template>
   <div class="H" :style="{backgroundImage:`url(${img})`}">
     <person :say='say' />
-    <div class="dot" @click="move"></div>
+    <!-- <div class="dot" @click="move"></div> -->
   </div>
 </template>
 <script>

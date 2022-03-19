@@ -14,6 +14,7 @@ import '@kangc/v-md-editor/lib/style/preview.css';
 import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
 import './http/index'
 import { io } from "socket.io-client";
+import './plugins/element.js'
 const socket = io();
 
 VueMarkdownEditor.use(vuepressTheme, {
