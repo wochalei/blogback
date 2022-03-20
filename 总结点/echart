@@ -1,0 +1,32 @@
+echart 响应式配合gird 布局 加媒体查询的问题
+当媒体查询 本来一行设置3个 媒体查询后弄一行2个 继续小弄一行一个
+但发现 媒体查询变化后 chart大小超过了 charts盒子
+设置chart背景颜色时，发现调整屏幕宽度时，grid布局里的子元素只有外面一层有挤压效果，一般每个子元素都要有挤压效果
+<div class="charts">
+      <chart :option="optionA" :width="width" :height="height" />
+      <chart :option="optionB" :width="width" :height="height" />
+      <chart :option="optionC" :width="width" :height="height" />
+      
+</div>
+
+我怀疑是chart自动获取父元素宽度时获取了charts父元素的宽度 所以才宽度大小有特殊情况
+因此 额外对chart组件套上 chartI 元素节点，控制chartI 元素节点宽度来让他获取正确的宽度
+但设置背景颜色时发现，还是只有外面一层有挤压效果。因此推测 本来chartsI全都要挤压变化大小，
+但因为其子元素大小撑开了，挤压不了。然后子元素时刻更新撑开的宽度，导致响应式大小时，宽度不能正确响应式
+因此给chartI设置 overflow: hidden; 不让其子元素撑开宽度。且chartI设置100%宽度变化。
+从而人eschar 的resize更新时获取正确的大小宽度。实现响应式大小变化。
+最后项目结果证明我的怀疑得到证实。成功解决了响应式eschar的矛盾点。
+
+（内心想法） 还好不知道自己为啥脑抽设个背景颜色发现没挤压宽度问题，才由此联想到子元素撑开宽度，然后echart更新自己的宽度
+最终才发现矛盾点。 要不然问题解决不了。运气啊
+<div class="charts">
+      <div class="chartsI">
+      <chart :option="optionA" :width="width" :height="height" />
+      </div>
+      <div class="chartsI">
+      <chart :option="optionB" :width="width" :height="height" />
+      </div>
+      <div class="chartsI">
+      <chart :option="optionC" :width="width" :height="height" />
+      </div>
+</div>

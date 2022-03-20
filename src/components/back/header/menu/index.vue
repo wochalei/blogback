@@ -61,7 +61,7 @@ export default {
       if (this.$route.path === "/" + router.dataset.route) this.renew();
       else this.$router.push({ path: `/${router.dataset.route}` });
 
-      window.scrollTo(0, window.innerHeight);
+      /* window.scrollTo(0, window.innerHeight); */
     },
     search() {
       this.show_search = true;

@@ -11,7 +11,6 @@
     "axios": "^0.22.0",
     "core-js": "^3.6.5",
     "echarts": "^5.3.1",
-    "element-ui": "^2.4.5",
     "socket.io-client": "^4.4.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"
@@ -24,8 +23,7 @@
     "@vue/compiler-sfc": "^3.0.0",
     "babel-plugin-component": "^1.1.1",
     "sass": "^1.26.5",
-    "sass-loader": "^8.0.2",
-    "vue-cli-plugin-element": "~1.0.1"
+    "sass-loader": "^8.0.2"
   },
   "browserslist": [
     "> 1%",

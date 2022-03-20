@@ -1,8 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import '../src/assets/icon/iconfont.css'
-import '../src/assets/icon/index/iconfont.css'
+import './assets/iconfont.css'
 import './style/common/index.scss'
 import VueMarkdownEditor from '@kangc/v-md-editor';
 import '@kangc/v-md-editor/lib/style/base-editor.css';
@@ -14,7 +13,7 @@ import '@kangc/v-md-editor/lib/style/preview.css';
 import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
 import './http/index'
 import { io } from "socket.io-client";
-import './plugins/element.js'
+
 const socket = io();
 
 VueMarkdownEditor.use(vuepressTheme, {

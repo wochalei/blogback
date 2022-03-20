@@ -56,7 +56,8 @@ function timeToYm(timestamp){
   var date = new Date(timestamp );
   var Y = date.getFullYear();
   var M = (date.getMonth()+1);
-  return {Y,M}
+  var D = date.getDate();
+  return {Y,M,D}
 }
 function dataToTree(data){
   
