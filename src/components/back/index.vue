@@ -1,10 +1,13 @@
 <template>
+   <div>
   <div class="back" v-if="u_data && sys_data">
     <navmenu :name="u_data.name" :img="u_data.img" />
     <tou :say="JSON.parse(u_data.say)" :img="sys_data.img_one" />
     <content :say="u_data.content_say" :img="sys_data.img_two" />
     <foo :count="sys_data.count" :online="online" />
-  </div>
+  </div>     
+        <loading v-else/>
+    </div>
 </template>
 <script>
 import {user_infor,system} from '../../http/api'
@@ -12,7 +15,7 @@ import tou from "./header";
 import content from "./content";
 import navmenu from "./header/menu";
 import foo from "./footer";
-
+import loading from '../common/loading'
 import {socket} from '../../main'
 export default {
   name: "back",
@@ -27,7 +30,7 @@ export default {
     tou,
     content,
     navmenu,
-    foo,
+    foo,loading
   },
   methods: {
     longtime() {
@@ -40,19 +43,13 @@ export default {
     user_infor.getUser()
       .then((res) => {
         this.u_data = res.data.data[0];
-        
       })
-      .catch((e) => {
-        console.log(e);
-      });
+
     system.getSystem()
       .then((res) => {
         this.sys_data = res.data.data[0];
         system.updateSystem({ count: this.sys_data.count });
       })
-      .catch((e) => {
-        console.log(e);
-      });
     this.longtime();
   
   },

@@ -1,16 +1,17 @@
 <template>
   <div class="index">
     <tip :say='say'/>
-    <card :list="data" />
+    <card :list="data" v-if="load" />
+    <div class="loadwrap" v-else><loade/></div>
     <page v-if="totalPage" 
     @getPage='getPage' 
     :pageSize='pageSize'
     :pageCount='pageCount'
     :totalPage="totalPage" />
-   
   </div>
 </template>
 <script>
+import loade from '../../../common/loading/loaddata/index.vue'
 import tip from "../../indextip";
 import card from "../card/index.vue";
 import page from "../../../common/page";
@@ -26,13 +27,15 @@ export default {
       pageCount: 10,
       allCount: 0,
       say:'',
-      text:''
+      text:'',
+      load:false
     };
   },
   components: {
     tip,
     card,
     page,
+    loade
     
   },
   computed: {
@@ -53,15 +56,14 @@ export default {
     getPage(obj) {
       if(!obj.page) this.page=1;
       else this.page = obj.page;
+      this.load=false;
       blog.searchAll({ title: this.text, page: obj.page, pageSize: obj.pageSize })
         .then((res) => {
-          
+          this.load=true;
           this.data = this.formateTime(res.data.data);
           this.allCount = res.data.allCount; 
         })
-        .catch((err) => {
-          console.log(err);
-        });
+
     },
   },
   mounted() {
@@ -83,4 +85,13 @@ export default {
 };
 </script>
 <style lang="scss">
+.loadwrap{
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(211, 211, 211,0.5);
+  
+}
 </style>

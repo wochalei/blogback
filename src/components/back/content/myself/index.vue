@@ -1,5 +1,6 @@
 <template>
-  <div class="myself">
+  <div>
+  <div class="myself" v-if="load" >
     <user :name="name" :img="img" />
     <my-title :icon="'iconfont icon-zhexiantu'" :title="'文章统计图'" />
     <!-- <v-md-preview :text="text" ref="preview"></v-md-preview> -->
@@ -25,8 +26,12 @@
     <my-title :icon="'iconfont icon-xiangce'" :title="'个人相册'" />
     <album />
   </div>
+  <div class="loadbox" v-else> <load /></div>
+  
+  </div>
 </template>
 <script>
+import load from '.././../../common/loading/loaddata'
 import album from "./album/index.vue";
 import { user_infor, blog } from "../../../../http/api";
 import chart from "../../../charts";
@@ -57,6 +62,7 @@ export default {
         { skill: "Web安全", precentage: "30%" },
         { skill: "小程序", precentage: "40%" },
       ],
+      load:false
     };
   },
   methods: {
@@ -126,6 +132,7 @@ export default {
         /* this.text = data.introduce; */
         this.name = data.name;
         this.img = data.img;
+        this.load=true;
       });
     }
   },
@@ -149,16 +156,26 @@ export default {
     myTitle,
     skill,
     album,
+    load
   },
 };
 </script>
 <style lang="scss">
+.loadbox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 70vh;
+  margin-top: -20vh;
+  background-color: white;
+}
 .myself {
   color: #000;
   min-height: 100vh;
   background-color: white;
   padding: 10px 20px 20px 20px;
-  margin-top: -200px;
+  margin-top: -20vh;
 }
 .charts {
   display: grid;

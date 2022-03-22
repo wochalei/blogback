@@ -1,0 +1,47 @@
+<template>
+    <div class="space">
+  <!-- 飞船部分 -->
+  <div class="ship">
+    <div class="ship-rotate">
+      <div class="pod"></div>
+      <div class="fuselage"></div>
+      <!-- 尾气部分 -->
+      <div class="exhaust-flame"></div>
+      <ul class="exhaust-fumes">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+  <!-- 阴影部分 -->
+  <div class="ship-shadow"></div>
+  <!-- 星球部分 -->
+  <div class="mars">
+    <div class="tentacle"></div>
+    <div class="flag">
+      <div class="small-tentacle"></div>
+    </div>
+    <div class="planet">
+      <div class="surface"></div>
+      <div class="crater1"></div>
+      <div class="crater2"></div>
+      <div class="crater3"></div>
+    </div>
+  </div>
+    </div>  
+</template>
+<script>
+import './style.css'
+export default {
+    
+}
+</script>
+<style lang="scss">
+    
+</style>
