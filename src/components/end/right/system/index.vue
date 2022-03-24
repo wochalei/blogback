@@ -9,8 +9,7 @@
           </td>
           <td v-else><input type="file" name="img_one" id="img_one" /></td>
           <td>
-            <button @click="img_one = !img_one">切换</button
-            >
+            <button @click="img_one = !img_one">切换</button>
           </td>
         </tr>
         <tr>
@@ -20,18 +19,21 @@
           </td>
           <td v-else><input type="file" name="img_two" id="img_two" /></td>
           <td>
-            <button @click="img_two = !img_two">切换</button
-            >
+            <button @click="img_two = !img_two">切换</button>
           </td>
         </tr>
-        <tr><td></td><td><button @click="save">保存</button></td></tr>
+        <tr>
+          <td></td>
+          <td><button @click="save">保存</button>
+          <button class="exit" @click="exit">账号退出</button>
+          </td>
+        </tr>
       </table>
-     
     </form>
   </div>
 </template>
 <script>
-import{system} from '../../../../http/api'
+import { system } from "../../../../http/api";
 export default {
   data() {
     return {
@@ -45,31 +47,29 @@ export default {
     save() {
       let table = this.$refs.f_sys,
         formdata = new FormData(table);
-      system.updateSystem(formdata)
-        .then((res) => {
-            alert('保存成功');
-          
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      system.updateSystem(formdata).then((res) => {
+        alert("保存成功");
+      });
     },
+    exit(){
+      localStorage.setItem('user_id','');
+      this.$router.push("/login");
+    }
   },
   mounted() {
-    system.getSystem()
-      .then((res) => {
-        
-        this.one = res.data.data[0].img_one;
-        this.two = res.data.data[0].img_two;
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    system.getSystem().then((res) => {
+      this.one = res.data.data[0].img_one;
+      this.two = res.data.data[0].img_two;
+    });
   },
 };
 </script>
 <style lang="scss">
 .f_control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   padding-top: 20px;
 
@@ -85,6 +85,9 @@ export default {
       white-space: nowrap;
     }
     td:nth-child(2) {
+    }
+    .exit{
+      margin-left: 30px;
     }
   }
 

@@ -36,16 +36,17 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 300px;
+  height: 80vh;
 
   .person_name {
-    height: 50%;
-    line-height: 150px;
+   
+    margin-top:-30vh;
+    margin-bottom: 20vh;
     font-size: 60px;
   }
   .person_say {
-    height: 50%;
-    line-height: 100px;
+     
+   
     font-size: 24px;
     .mark {
     border-right: 2px solid white;

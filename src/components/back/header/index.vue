@@ -1,26 +1,40 @@
 <template>
-  <div class="H" :style="{backgroundImage:`url(${img})`}">
+
+  <div v-if="load" class="H" :style="{backgroundImage: `url(${img})`}">
     <person :say='say' />
     <!-- <div class="dot" @click="move"></div> -->
   </div>
+
 </template>
 <script>
 
 import person from "./person";
+import load from '../../common/loading/index.vue'
 export default {
   name: "H",
   data() {
       return {
-          data:{}
+          data:{},
+          load:true
       }
   },
   components: {
-    person,
+    person,load
   },
   methods: {
     move() {
       window.scrollTo(0, window.innerHeight);
     },
+    imgOnload(){
+      let img = new Image();
+      img.src = this.img;
+      img.onload=()=>{
+        this.load=true;
+      }
+    }
+  },
+  mounted() {
+    /* this.imgOnload(); */
   },
   props:['say','img'],
 
@@ -30,6 +44,7 @@ export default {
 <style lang="scss">
 .H {
   display: flex;
+  position: relative;
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
@@ -38,6 +53,8 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  z-index: -999;
+
   .dot {
     position: relative;
     width: 60px;

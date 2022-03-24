@@ -31,7 +31,7 @@ export default {
     }
     .major{
         width: 1200px;
-        padding:35px 0 ;
+        padding:35px 0  0 0;
         margin: 0 auto;
     }
 </style>

@@ -7,10 +7,7 @@
                 <input type="text"  id="name" v-model="name">
                 <label for="password" >密码:</label>
                 <input type="password"  id="password" v-model="password">
-                <!-- <div class="user_img" >头像: <img src=""></div>
-                <label for="img" class="submit">上传头像</label>
-                <input type="file"  id="img" -->
-                <button class="submit" @click="add">注册</button>
+                <button class="user-submit" @click="add">注册</button>
              </div>          
          </div>
      </div>
@@ -93,7 +90,7 @@ export default {
     align-self:flex-end;
     cursor: pointer;
 }
-.submit{
+.user-submit{
   width: 100%;
   height: 40px;
   border-radius: 4px;
@@ -103,7 +100,7 @@ export default {
   text-align: center;
   line-height: 40px;
 }
-.submit:hover{
+.user-submit:hover{
     background-color: rgba(26,198,255,0.8);
 }
 #img{

@@ -1,37 +1,44 @@
 <template>
-   
-  <router-view/>
-  
+  <router-view />
 </template>
+<script>
+export default {
+  mounted() {
+    
+  },
+};
+</script>
 
 <style lang="scss">
-*{
-    padding: 0;
-    margin: 0;
-    
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+
+  box-sizing: border-box;
 }
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
-ul{
-    list-style: none;
+ul {
+  list-style: none;
 }
-img{
-    width: 100%;
-    height: 100%;
+img {
+  width: 100%;
+  height: 100%;
 }
-input,button{
-    outline: none;
-    border: 1px solid transparent;
+input,
+button {
+  outline: none;
+  border: 1px solid transparent;
 }
 /*  @media screen and (min-width:750px) {
     html{
         font-size: 37.5px !important;
     }
 } */
-html{
-scroll-behavior: smooth;
- /* font-size: 37.5px; */
+html {
+  scroll-behavior: smooth;
+  /* font-size: 37.5px; */
+  -webkit-overflow-scrolling: touch;
 }
 </style>

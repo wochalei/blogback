@@ -174,8 +174,9 @@ export default {
   color: #000;
   min-height: 100vh;
   background-color: white;
-  padding: 10px 20px 20px 20px;
+  padding: 10px 20px;
   margin-top: -20vh;
+  z-index: 660;
 }
 .charts {
   display: grid;

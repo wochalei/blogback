@@ -11,7 +11,7 @@
                     <span @click="register">立即注册</span>
                     <span>找回密码</span>
                 </div>   
-                <button class="submit" @click="login">登录</button>
+                <button class="user-submit" @click="login">登录</button>
              </div>
             
          </div>
@@ -107,7 +107,7 @@ export default {
     align-self:flex-end;
     cursor: pointer;
 }
-.submit{
+.user-submit{
   width: 100%;
   height: 40px;
   border-radius: 4px;
@@ -117,7 +117,7 @@ export default {
   text-align: center;
   line-height: 40px;
 }
-.submit:hover{
+.user-submit:hover{
     background-color: rgba(26,198,255,0.8);
 }
 #img{

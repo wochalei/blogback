@@ -177,4 +177,26 @@ export default {
     flex-shrink: 0;
   }
 }
+@media screen and(max-width:1222px) {
+  .page{
+    ul{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      height: 44px;
+      button{
+        transition: all 0.4s;
+      }
+      button:hover{
+       background-color: skyblue;
+       color: white;
+      }
+    }
+    li,.skip,span{
+      display: none;
+    }
+    
+  }
+}
 </style>

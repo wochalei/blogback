@@ -23,8 +23,7 @@ export default {
     
 }
     .my_my{
-         width: 369px;
-         margin: 0 auto;
+        width: 100%;
                
         .my_img{
             width: 160px;
