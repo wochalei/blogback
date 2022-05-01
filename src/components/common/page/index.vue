@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <ul>
-      <button @click="pre">上一页</button>
+      <button @click="pre" :disabled="currentPage===1">上一页</button>
       <li
         :class="{ active: currentPage == item + 1 }"
         v-for="(item, index) in pageList"
@@ -11,7 +11,7 @@
         {{ item + 1 }}
       </li>
 
-      <button @click="next">下一页</button>
+      <button @click="next" :disabled="currentPage===pageList.length">下一页</button>
       <div class="skip">
         <span>前往</span>
         <input type="text" v-model="skipPage" />
@@ -23,6 +23,7 @@
   </div>
 </template>
 <script>
+import {debounce} from '../../../utils.js/tools'
 export default {
   data() {
     return {
@@ -51,7 +52,7 @@ export default {
       this.pageList = tmp;
      
     },
-    pre() {
+    pre:debounce(function(){
       if (this.currentPage <= 1) this.currentPage = 1;
       else this.currentPage--;
 
@@ -60,8 +61,8 @@ export default {
         page: this.currentPage,
         pageSize: this.pageSize,
       });
-    },
-    next() {
+    },300),
+    next:debounce(function() {
       if (this.currentPage >= this.totalPage) this.currentPage = this.totalPage;
       else this.currentPage++;
 
@@ -70,7 +71,7 @@ export default {
         page: this.currentPage,
         pageSize: this.pageSize,
       });
-    },
+    },300),
     updatedList(index) {
       let begin = index - 5,
         end = index + 5 < this.totalPage ? index + 5 : this.totalPage;
@@ -89,7 +90,7 @@ export default {
       }
       this.pageList = tmp;
     },
-    click(e) {
+    click:debounce(function(e) {
       const currentPage = Number(e.target.textContent);
 
       this.currentPage = currentPage;
@@ -100,7 +101,7 @@ export default {
         pageSize: this.pageSize,
         
       });
-    },
+    },300),
     skip(){
       //变数字类型
       this.skipPage=+this.skipPage;

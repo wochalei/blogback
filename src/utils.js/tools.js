@@ -85,11 +85,25 @@ function dataToTree(data){
       })
       return d_tmp;
 }
+function debounce(func, wait) {
+  let timeout=null;
+   
+  return function (...arr) {
+      let context = this; // 保存this指向
+     
+        console.log(this); 
+      clearTimeout(timeout)
+      timeout = setTimeout(function(){
+          func.apply(context, arr)
+      }, wait);
+  }
+}
 export {
   matchImg,
   readImg,
   getNowFormatDate,
   timestampToTime,
   timeToYm,
-  dataToTree
+  dataToTree,
+  debounce
 }

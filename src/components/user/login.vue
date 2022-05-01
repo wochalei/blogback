@@ -9,7 +9,7 @@
                 <input type="password" id="password" v-model="password">
                 <div class="user">
                     <span @click="register">立即注册</span>
-                    <span>找回密码</span>
+                  <!--   <span>找回密码</span> -->
                 </div>   
                 <button class="user-submit" @click="login">登录</button>
              </div>
@@ -63,7 +63,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(../../../public/img/background.jpg);
+    background-image: url(../../../public/img/background.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

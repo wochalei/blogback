@@ -1,13 +1,10 @@
 <template>
-   <div>
-  <div class="back" v-if="u_data && sys_data">
+  <div class="back">
     <navmenu :name="u_data.name" :img="u_data.img" />
-    <tou :say="JSON.parse(u_data.say)" :img="sys_data.img_one" />
+    <tou v-if="u_data" :say="JSON.parse(u_data.say)" :img="sys_data.img_one" />
     <content :say="u_data.content_say" :img="sys_data.img_two" />
     <foo :count="sys_data.count" :online="online" />
   </div>     
-        <loading v-else/>
-    </div>
 </template>
 <script>
 import {user_infor,system} from '../../http/api'
@@ -24,6 +21,7 @@ export default {
       u_data: "",
       sys_data: "",
       online: 1,
+      
     };
   },
   components: {
@@ -39,14 +37,17 @@ export default {
        });
     },
   },
+
   mounted() {
     user_infor.getUser()
       .then((res) => {
+        console.log(res);
         this.u_data = res.data.data[0];
       })
 
     system.getSystem()
       .then((res) => {
+         console.log(res);
         this.sys_data = res.data.data[0];
         system.updateSystem({ count: this.sys_data.count });
       })
@@ -56,4 +57,5 @@ export default {
 };
 </script>
 <style lang="scss">
+
 </style>
