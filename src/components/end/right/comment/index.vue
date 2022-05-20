@@ -134,11 +134,14 @@ export default {
       this.comment.title = content.title;
       this.comment.content = content.html;
       this.comment.flag ='true'
+     
       comment.reply(this.comment).then((res) => {
-        alert('回复成功');
-         
-        this.close();
+       if(res.data.error===1) alert('回复失败');
+       else{
+         alert('回复成功'); this.close();
+       }  
       }).catch(e=>{
+       
         alert('回复失败');
       });
     },
