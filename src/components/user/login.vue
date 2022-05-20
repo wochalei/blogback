@@ -9,7 +9,7 @@
                 <input type="password" id="password" v-model="password">
                 <div class="user">
                     <span @click="register">立即注册</span>
-                  <!--   <span>找回密码</span> -->
+                 
                 </div>   
                 <button class="user-submit" @click="login">登录</button>
              </div>

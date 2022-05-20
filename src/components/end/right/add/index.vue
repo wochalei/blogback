@@ -131,11 +131,13 @@ export default {
       this.summary = obj.summary;
       this.type = obj.type;
       this.title = obj.title;
+       console.log(this.type);
     },
     getTypeList(){
       type.getType()
       .then(res=>{
         this.typeList=res.data.data;
+        if(this.flag)
         this.type=this.typeList[0].type;
       })
     }
@@ -145,8 +147,10 @@ export default {
       this.blog_id=this.$route.query.blog_id;
       blog.searchAll({ blog_id: this.blog_id })
       .then((res) => {
+        
         this.copy(res.data.data[0]);
         this.flag=false;
+       
       });
     }
      this.getTypeList();

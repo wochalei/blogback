@@ -104,20 +104,18 @@ export default {
       });
     },
     deleted(e){
-      const type =e.target.parentElement.parentElement.dataset.type;
-      type.deletedType(type)
+      const value =e.target.parentElement.parentElement.dataset.type;
+      type.deletedType(value)
       .then(res=>{
          
          this.httpType();
       })
-      .catch(err=>{
-        console.log(err);
-      })
+
     },
     change(e){
-       const type =e.target.parentElement.parentElement.dataset.type;
+       const value=e.target.parentElement.parentElement.dataset.type;
       this.isChange=true;
-      this.type=type;
+      this.type=value;
     },
     getPage(obj){
       this.page=obj.page;
