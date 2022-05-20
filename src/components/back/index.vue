@@ -2,7 +2,7 @@
   <div class="back">
     <navmenu :name="u_data.name" :img="u_data.img" />
     <tou v-if="u_data" :say="JSON.parse(u_data.say)" :img="sys_data.img_one" />
-    <content :say="u_data.content_say" :img="sys_data.img_two" />
+    <content v-if="u_data" :say="u_data.content_say" :img="sys_data.img_two" />
     <foo :count="sys_data.count" :online="online" />
   </div>     
 </template>
@@ -47,7 +47,7 @@ export default {
 
     system.getSystem()
       .then((res) => {
-         console.log(res);
+         
         this.sys_data = res.data.data[0];
         system.updateSystem({ count: this.sys_data.count });
       })

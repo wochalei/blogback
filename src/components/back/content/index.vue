@@ -15,7 +15,6 @@ export default {
     props:['say','img'],
     mounted() {
       localStorage.setItem('say',this.say);
-    
     },
     
 }
